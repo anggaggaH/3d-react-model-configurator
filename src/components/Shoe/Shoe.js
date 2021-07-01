@@ -1,15 +1,18 @@
-/* eslint-disable no-sequences */
-import { useEffect,  useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import { useSnapshot } from "valtio"
 import state from "../../state"
 
-export const Shoe = () => {
+export const Shoe = (props) => {
   const [hovered, setHovered] = useState(null);
   const group = useRef();
   const snap = useSnapshot(state);
-  const { nodes, materials } = useGLTF("shoe-draco.glb");
+  // const { nodes, materials } = useGLTF("GlamVelvetSofa.glb");
+  // const { nodes, materials } = useGLTF("MaterialsVariantsShoe.glb");
+  // const { nodes, materials } = useGLTF("WaterBottle.glb");
+  let item = props.item ? props.item : "shoe-draco.glb"
+  const { nodes, materials } = useGLTF(item);
 
   // Animate model
   useFrame((state) => {
@@ -28,6 +31,10 @@ export const Shoe = () => {
     )}'), auto`;
   }, [hovered, snap.items]);
 
+  // console.log(snap)
+  // console.log(nodes)
+  // console.log(materials)
+
   return (
     <group
       ref={group}
@@ -41,6 +48,67 @@ export const Shoe = () => {
         e.stopPropagation(), (state.current = e.object.material.name)
       )}
     >
+      {/* <mesh
+        material-color={snap.items.BottleMat}
+        material={materials.BottleMat}
+        geometry={nodes.WaterBottle.geometry}
+      /> */}
+      {/* <mesh
+        material-color={snap.items.GlamVelvetSofa_fabric_navy}
+        material={materials.GlamVelvetSofa_fabric_navy}
+        geometry={nodes.GlamVelvetSofa_fabric.geometry}
+      />
+      <mesh
+        material-color={snap.items.GlamVelvetSofa_feet}
+        material={materials.GlamVelvetSofa_feet}
+        geometry={nodes.GlamVelvetSofa_feet.geometry}
+      />
+      <mesh
+        material-color={snap.items.GlamVelvetSofa_legs}
+        material={materials.GlamVelvetSofa_legs}
+        geometry={nodes.GlamVelvetSofa_legs.geometry}
+      /> */}
+
+      {/* Fox */}
+      {/* <mesh
+        material-color={snap.items.fox_material}
+        material={materials.fox_material}
+        geometry={nodes.fox.geometry}
+      /> */}
+
+      {/* MilkTruck */}
+      {/* <mesh
+        material-color={snap.items.truck}
+        material={materials.truck}
+        geometry={nodes.Cesium_Milk_Truck_2.geometry}
+      />
+      <mesh
+        material-color={snap.items.truck}
+        material={materials.truck}
+        geometry={nodes.Cesium_Milk_Truck_3.geometry}
+      />
+      <mesh
+        material-color={snap.items.truck}
+        material={materials.truck}
+        geometry={nodes.Cesium_Milk_Truck_1.geometry}
+      />
+      <mesh
+        material-color={snap.items.wheels}
+        material={materials.wheels}
+        geometry={nodes.Wheels.geometry}
+      />
+      <mesh
+        material-color={snap.items.wheels}
+        material={materials.wheels}
+        geometry={nodes.Wheels001.geometry}
+      /> */}
+      {/* <mesh
+        material-color={snap.items.window_trim}
+        material={materials.window_trim}
+        geometry={nodes.Shoe.geometry}
+      /> */}
+
+      {/* this for shoe-draco */}
       <mesh
         material-color={snap.items.laces}
         material={materials.laces}
